@@ -18,16 +18,16 @@ jobs:
     strategy:
       matrix:
         arch: [x86_64,]
-        version: ["5.15.78.1"]
+        version: ["5.10.177.4"]
         include:
           - arch: x86_64
             file_name: "bzImage"
-          - version: "5.15.78.1"
+          - version: "5.10.177.4"
             arch: x86_64
-            make_config: config-wsa-x64
-          - version: "5.15.78.1"
-            device_code: latte-2
-            kernel_version: "5.15"
+            make_config: config-wsa-5.10
+          - version: "5.10.177.4"
+            device_code: latte
+            kernel_version: "5.10"
 
 
     name: Build WSA-Kernel-${{ matrix.version }}-${{ matrix.arch }}
@@ -67,7 +67,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: suoweijixi/WSA-Linux-Kernel
-          ref: android-lts/${{ matrix.device_code }}/${{ matrix.version }}
           path: WSA-Linux-Kernel
 
       - name: Setup Ccache
